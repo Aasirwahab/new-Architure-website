@@ -58,17 +58,20 @@ const App: React.FC = () => {
       <div className="noise-overlay"></div>
       <Preloader />
       <Navbar />
-      <main className="relative z-10 bg-stone min-h-screen">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/projects" element={<Projects />} />
-          <Route path="/project/:id" element={<ProjectDetail />} />
-          <Route path="/services" element={<Services />} />
-          <Route path="/process" element={<Process />} />
-          <Route path="/studio" element={<Studio />} />
-          <Route path="/contact" element={<Contact />} />
-        </Routes>
-      </main>
+      {/* We wrap the content in a container that has a shadow to separate it from the footer reveal */}
+      <div className="relative z-10 bg-stone shadow-[0_50px_100px_rgba(0,0,0,0.3)]">
+        <main>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/projects" element={<Projects />} />
+            <Route path="/project/:id" element={<ProjectDetail />} />
+            <Route path="/services" element={<Services />} />
+            <Route path="/process" element={<Process />} />
+            <Route path="/studio" element={<Studio />} />
+            <Route path="/contact" element={<Contact />} />
+          </Routes>
+        </main>
+      </div>
       <Footer />
     </Router>
   );
