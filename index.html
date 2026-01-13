@@ -7,7 +7,7 @@
     <title>AETHEREAL | Future Living</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Manrope:wght@200;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
@@ -19,8 +19,8 @@
               dark: '#121212'
             },
             fontFamily: {
-              display: ['Syncopate', 'sans-serif'],
-              body: ['Manrope', 'sans-serif'],
+              display: ['Space Grotesk', 'sans-serif'],
+              body: ['Inter', 'sans-serif'],
             }
           }
         }
@@ -31,13 +31,22 @@
         --c-bg: #E3E1DC;
         --c-dark: #121212;
       }
+      * {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
       body {
         background-color: var(--c-bg);
         color: var(--c-dark);
         margin: 0;
         overflow-x: hidden;
+        font-family: 'Inter', sans-serif;
+        /* Prevent scroll bounce issues on iOS */
+        overscroll-behavior-y: none;
       }
-      .display { font-family: 'Syncopate', sans-serif; }
+      .display { font-family: 'Space Grotesk', sans-serif; }
+      
+      /* Optimized Noise Overlay */
       .noise-overlay {
         position: fixed;
         inset: 0;
@@ -45,11 +54,34 @@
         z-index: 9000;
         opacity: 0.04;
         background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='1'/%3E%3C/svg%3E");
+        transform: translateZ(0); /* Force GPU */
       }
+      
+      /* Force GPU for sticky/animated sections to prevent lag */
+      .card-item, .hero-line span, .reveal-sec {
+        will-change: transform, opacity;
+        backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
+      }
+
       ::-webkit-scrollbar { width: 6px; }
       ::-webkit-scrollbar-track { background: var(--c-bg); }
       ::-webkit-scrollbar-thumb { background: #bbb; border-radius: 10px; }
       .hide-scrollbar::-webkit-scrollbar { display: none; }
+      
+      /* Lenis requirement */
+      html.lenis {
+        height: auto;
+      }
+      .lenis.lenis-smooth {
+        scroll-behavior: auto !important;
+      }
+      .lenis.lenis-smooth [data-lenis-prevent] {
+        overscroll-behavior: contain;
+      }
+      .lenis.lenis-stopped {
+        overflow: hidden;
+      }
     </style>
 <script type="importmap">
 {

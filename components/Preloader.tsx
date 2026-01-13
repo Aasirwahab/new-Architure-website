@@ -1,6 +1,9 @@
 
 import React, { useEffect, useRef } from 'react';
 
+// Declare gsap globally to fix "Cannot find name 'gsap'"
+declare const gsap: any;
+
 const Preloader: React.FC = () => {
   const loaderRef = useRef<HTMLDivElement>(null);
   const barRef = useRef<HTMLDivElement>(null);
